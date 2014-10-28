@@ -9,10 +9,6 @@ set_time_limit(0);
 header('Content-Type:text/html;charset=utf-8');
 
 require_once 'build.config.php';
-// Refresh model
-if (file_exists('build.model.php')) {
-	require_once 'build.model.php';
-}
 
 /* define sources */
 $root = dirname(dirname(__FILE__)) . '/';
@@ -142,37 +138,6 @@ if (defined('BUILD_POLICY_TEMPLATE_UPDATE')) {
 	unset ($templates, $template, $attributes);
 }
 
-/* load menus */
-if (defined('BUILD_MENU_UPDATE')) {
-	$menus = include $sources['data'] . 'transport.menu.php';
-	$attributes = array(
-		xPDOTransport::PRESERVE_KEYS => true,
-		xPDOTransport::UPDATE_OBJECT => BUILD_MENU_UPDATE,
-		xPDOTransport::UNIQUE_KEY => 'text',
-		xPDOTransport::RELATED_OBJECTS => true,
-		xPDOTransport::RELATED_OBJECT_ATTRIBUTES => array(
-			'Action' => array(
-				xPDOTransport::PRESERVE_KEYS => false,
-				xPDOTransport::UPDATE_OBJECT => BUILD_ACTION_UPDATE,
-				xPDOTransport::UNIQUE_KEY => array('namespace', 'controller'),
-			),
-		),
-	);
-	if (is_array($menus)) {
-		foreach ($menus as $menu) {
-			$vehicle = $builder->createVehicle($menu, $attributes);
-			$builder->putVehicle($vehicle);
-			/* @var modMenu $menu */
-			$modx->log(modX::LOG_LEVEL_INFO, 'Packaged in menu "' . $menu->get('text') . '".');
-		}
-	}
-	else {
-		$modx->log(modX::LOG_LEVEL_ERROR, 'Could not package in menu.');
-	}
-	unset($vehicle, $menus, $menu, $attributes);
-}
-
-
 /* create category */
 $modx->log(xPDO::LOG_LEVEL_INFO, 'Created category.');
 /* @var modCategory $category */
@@ -272,9 +237,6 @@ $builder->setPackageAttributes(array(
 	'license' => file_get_contents($sources['docs'] . 'license.txt'),
 	'readme' => file_get_contents($sources['docs'] . 'readme.txt'),
 	'chunks' => $BUILD_CHUNKS,
-	'setup-options' => array(
-		'source' => $sources['build'] . 'setup.options.php',
-	),
 ));
 $modx->log(modX::LOG_LEVEL_INFO, 'Added package attributes and setup options.');
 

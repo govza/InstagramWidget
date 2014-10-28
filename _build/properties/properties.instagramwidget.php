@@ -3,34 +3,60 @@
 $properties = array();
 
 $tmp = array(
+	'wrapper' => array(
+		'type' => 'textfield',
+		'value' => 'tpl.InstagramWidget.wrapper',
+	),
 	'tpl' => array(
 		'type' => 'textfield',
-		'value' => 'tpl.InstagramWidget.item',
+		'value' => 'tpl.InstagramWidget.row',
 	),
-	'sortby' => array(
+	'width' => array(
 		'type' => 'textfield',
-		'value' => 'name',
-	),
-	'sortdir' => array(
-		'type' => 'list',
-		'options' => array(
-			array('text' => 'ASC', 'value' => 'ASC'),
-			array('text' => 'DESC', 'value' => 'DESC'),
-		),
-		'value' => 'ASC'
+		'value' => '260px',
 	),
 	'limit' => array(
 		'type' => 'numberfield',
-		'value' => 10,
+		'value' => 12,
 	),
-	'outputSeparator' => array(
-		'type' => 'textfield',
-		'value' => "\n",
+	'inLine' => array(
+		'type' => 'numberfield',
+		'value' => 4,
 	),
-	'toPlaceholder' => array(
-		'type' => 'combo-boolean',
-		'value' => false,
+	'cacheExpTime' => array(
+		'type' => 'numberfield',
+		'value' => 6,
 	),
+	'login' => array(
+		'xtype' => 'textfield',
+		'value' => 'govza',
+	),
+	'id' => array(
+		'xtype' => 'textfield',
+		'value' => '5139563e76d34551810efe80764b4557',
+	),
+	'hashtag' => array(
+		'xtype' => 'textfield',
+		'value' => '',
+	),
+	'cssFile' => array(
+		'xtype' => 'textfield',
+		'value' => '/components/instagramwidget/css/instagramwidget.css',
+	),
+	'random' => array(
+		'xtype' => 'combo-boolean',
+		'value' => true,
+	),
+	'imageSize' => array(
+		'type' => 'list',
+		'options' => array(
+			array('text' => 'small', 'value' => 'small'),
+			array('text' => 'large', 'value' => 'large'),
+			array('text' => 'fullsize', 'value' => 'fullsize'),
+		),
+		'value' => 'small'
+	),
+
 );
 
 foreach ($tmp as $k => $v) {

@@ -1,0 +1,1 @@
+<a href="[[+link]]" class="image" target="_blank"><img src="[[+src]]" alt="" /></a>

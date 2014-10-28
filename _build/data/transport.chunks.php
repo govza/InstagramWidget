@@ -3,8 +3,12 @@
 $chunks = array();
 
 $tmp = array(
-	'tpl.InstagramWidget.item' => array(
-		'file' => 'item',
+	'tpl.InstagramWidget.wrapper' => array(
+		'file' => 'wrapper',
+		'description' => '',
+	),
+	'tpl.InstagramWidget.row' => array(
+		'file' => 'row',
 		'description' => '',
 	),
 );
@@ -12,6 +16,8 @@ $tmp = array(
 // Save chunks for setup options
 $BUILD_CHUNKS = array();
 
+if($inWidget->config['imgRandom'] === true) shuffle($inWidget->data->images);
+$inWidget->data->images = array_slice($inWidget->data->images,0,$inWidget->view);
 foreach ($tmp as $k => $v) {
 	/* @avr modChunk $chunk */
 	$chunk = $modx->newObject('modChunk');

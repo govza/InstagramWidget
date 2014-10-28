@@ -2,13 +2,8 @@
 
 $settings = array();
 
-$tmp = array(/*
-	'some_setting' => array(
-		'xtype' => 'combo-boolean',
-		'value' => true,
-		'area' => 'instagramwidget_main',
-	),
-	*/
+$tmp = array(
+
 );
 
 foreach ($tmp as $k => $v) {
@@ -18,6 +13,7 @@ foreach ($tmp as $k => $v) {
 		array(
 			'key' => 'instagramwidget_' . $k,
 			'namespace' => PKG_NAME_LOWER,
+			'area' => PKG_NAME_LOWER.'_main',
 		), $v
 	), '', true, true);
 

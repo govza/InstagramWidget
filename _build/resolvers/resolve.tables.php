@@ -11,7 +11,6 @@ if ($object->xpdo) {
 
 			$manager = $modx->getManager();
 			$objects = array(
-				'InstagramWidgetItem',
 			);
 			foreach ($objects as $tmp) {
 				$manager->createObjectContainer($tmp);
