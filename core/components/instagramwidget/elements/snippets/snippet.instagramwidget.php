@@ -1,7 +1,7 @@
 <?php
 /** @var array $scriptProperties */
 /** @var InstagramWidget $InstagramWidget */
-if (!$InstagramWidget = $modx->getService('instagramwidget', 'InstagramWidget', $modx->getOption('instagramwidget_core_path', null, $modx->getOption('assets_path') . 'components/instagramwidget/') . 'model/instagramwidget/', $scriptProperties)) {
+if (!$InstagramWidget = $modx->getService('instagramwidget', 'InstagramWidget', $modx->getOption('instagramwidget_core_path', null, $modx->getOption('core_path') . 'components/instagramwidget/') . 'model/instagramwidget/', $scriptProperties)) {
 return 'Could not load InstagramWidget class!';
 }
 
