@@ -50,11 +50,11 @@ class InstagramWidget {
 						break;
 					}
 				}
-				if(empty($this->data['userid'])) {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402));die();}
+				if(empty($this->data['userid'])){$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); return '';}
 			}
-			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); die();}
+			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); return '';}
 		}
-		else die($this->getError(401));
+		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); return '';}
 		// -------------------------------------------------
 		// Query #2. Try to get profile statistic
 		// -------------------------------------------------
@@ -66,9 +66,9 @@ class InstagramWidget {
 				$this->data['followers'] = $answer->data->counts->followed_by;
 				$this->data['following'] = $answer->data->counts->follows;
 			}
-			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); die();}
+			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); return '';}
 		}
-		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(401)); die();}
+		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(401)); return '';}
 		// -------------------------------------------------
 		// Query #3. Try to get photo
 		// -------------------------------------------------
@@ -91,9 +91,9 @@ class InstagramWidget {
 				}
 				else $this->data['images'] = array();
 			}
-			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); die();}
+			else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(402)); return '';}
 		}
-		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(401)); die();}
+		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(401)); return '';}
 	}
 
 	public function cacheFilePlace() {
@@ -127,13 +127,13 @@ class InstagramWidget {
 			$answer = file_get_contents($url);
 			return $answer;
 		}
-		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(103)); die();}
+		else {$this->modx->log(modX::LOG_LEVEL_ERROR, $this->getError(103)); return '';}
 	}
 	public function checkConfig(){
 		if(!empty($this->config['LOGIN'])){
 			$this->config['LOGIN'] = strtolower(trim($this->config['LOGIN']));
 		}
-		else die('LOGIN required in config.php'.$this->config['LOGIN'].print_r($this->config));
+		else {$this->modx->log(modX::LOG_LEVEL_ERROR, 'LOGIN required'); return '';}
 		if(!empty($this->config['CLIENT_ID'])){
 			$this->config['CLIENT_ID'] = strtolower(trim($this->config['CLIENT_ID']));
 		}
